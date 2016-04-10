@@ -2,8 +2,6 @@ FROM nginx
 MAINTAINER justin "276887367@qq.com"
 
 
-ENV HEXO_VERSION 3.1.1
-
 RUN apt-get update && apt-get install -y curl git-core
 RUN curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 RUN nvm install 4
