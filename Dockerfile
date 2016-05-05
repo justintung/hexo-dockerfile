@@ -1,13 +1,13 @@
-FROM nginx
+FROM node:latest
 MAINTAINER justin "276887367@qq.com"
 
-
-RUN apt-get update && apt-get install -y curl git-core
-RUN curl https://raw.github.com/creationix/nvm/master/install.sh | sh
-RUN nvm install 4
+RUN apt-get update && apt-get install -y git-core nodejs npm
+#RUN echo 'registry = https://registry.npm.taobao.org' > ~/.npmrc
 RUN npm install -g hexo-cli
+WORKDIR /blog
+RUN git clone https://github.com/justintung/hexo.git .
+RUN npm install
+EXPOSE 4000
 
-WORKDIR /usr/local/nginx/html
-
-
-CMD ["nginx"]
+#CMD ["hexo","server","-i","0.0.0.0"]
+CMD ["hexo","server"]
